@@ -4,6 +4,8 @@ const bodyParser = require(`body-parser`)
 
 require(`dotenv`).config()
 
+require(`./crons`)
+
 const routes = require(`./routes`)
 
 const app = express()
