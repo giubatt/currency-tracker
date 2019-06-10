@@ -1,9 +1,9 @@
 const Boom = require(`boom`)
 
-// const authRoutes = require(`./auth`)
+const financeRoutes = require(`./finance`)
 
 module.exports = app => {
-  // app.use(`/api/auth`, authRoutes)
+  app.use(`/api/finance`, financeRoutes)
 
   // eslint-disable-next-line
   app.use((err, req, res, next) => {

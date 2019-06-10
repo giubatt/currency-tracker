@@ -4,7 +4,7 @@ const db = require(`../models`)
 
 const url = `https://economia.awesomeapi.com.br/all/USD-BRL,BTC-BRL,EUR-BRL`
 
-const rule = `*/5 * * * * *`
+const rule = `* * * * *`
 
 schedule.scheduleJob({ rule }, async () => {
   const res = await axios.get(url)

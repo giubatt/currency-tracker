@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test": "jest",
     "start": "node src/index.js",
     "dev": "nodemon --inspect src/index.js"
   },
