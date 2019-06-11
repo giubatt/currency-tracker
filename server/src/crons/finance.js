@@ -1,6 +1,6 @@
 const axios = require(`axios`).default
 const schedule = require(`node-schedule`)
-const db = require(`../models`)
+const financeController = require(`../controllers/finance`)
 
 const url = `https://economia.awesomeapi.com.br/all/USD-BRL,BTC-BRL,EUR-BRL`
 
@@ -9,14 +9,12 @@ const rule = `* * * * *`
 schedule.scheduleJob({ rule }, async () => {
   const res = await axios.get(url)
 
-  Object.values(res.data).forEach(data => {
-    const { code, high, low, bid, ask, create_date } = data
-
+  Object.values(res.data).forEach(({ code, high, low, bid, ask, create_date }) => {
     function parseNumberString(number) {
       return parseFloat(number.replace(`.`, ``).replace(`,`, `.`))
     }
 
-    db.finance.insert({
+    financeController.insert({
       code,
       high: parseNumberString(high),
       low: parseNumberString(low),
