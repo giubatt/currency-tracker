@@ -184,7 +184,7 @@ function Chart() {
         </Col>
         <Col span={12}>
           <VariationStats
-            title="3 Mêses"
+            title="3 Meses"
             value={values ? values.trimester : 0}
           />
         </Col>
