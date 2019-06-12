@@ -98,8 +98,8 @@ function Chart() {
         datasets: [
           {
             label: `BTC`,
-            backgroundColor: `#AF130B40`,
-            borderColor: `#AF130B`,
+            backgroundColor: `##f7931a40`,
+            borderColor: `##f7931a`,
             data: data.BTC
               ? data.BTC.map(({ date, bid }) => {
                   return {
