@@ -4,6 +4,46 @@ const axios = require(`axios`).default
 
 const financeController = require(`../controllers/finance`)
 
+router.get(`/variation/:codes`, async (req, res, next) => {
+  try {
+    const codes = req.params.codes.split(`,`)
+    const promises = codes.map(async code => {
+      let dayPromise = financeController.getVariation({
+        startDate: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+        code,
+      })
+      let weekPromise = financeController.getVariation({
+        startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+        code,
+      })
+      let monthPromise = financeController.getVariation({
+        startDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
+        code,
+      })
+      let trimesterPromise = financeController.getVariation({
+        startDate: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000),
+        code,
+      })
+      const [day, week, month, trimester] = await Promise.all([dayPromise, weekPromise, monthPromise, trimesterPromise])
+      return {
+        [code]: {
+          day,
+          week,
+          month,
+          trimester,
+        },
+      }
+    })
+
+    const dataArray = await Promise.all(promises)
+    const data = dataArray.reduce((result, current) => ({ ...result, ...current }), {})
+
+    res.json(data)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get(`/:codes`, async (req, res, next) => {
   try {
     const codes = req.params.codes.split(`,`)

@@ -1,7 +1,8 @@
 {
   "env": {
     "node": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -13,10 +14,7 @@
     "plugin:import/warnings",
     "prettier"
   ],
-  "plugins": [
-    "import",
-    "prettier"
-  ],
+  "plugins": ["import", "prettier"],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -28,21 +26,10 @@
         "semi": false
       }
     ],
-    "indent": [
-      "error",
-      2
-    ],
-    "quotes": [
-      "error",
-      "backtick"
-    ],
-    "semi": [
-      "error",
-      "never"
-    ],
-    "import/newline-after-import": [
-      "error"
-    ],
+    "indent": ["error", 2],
+    "quotes": ["error", "backtick"],
+    "semi": ["error", "never"],
+    "import/newline-after-import": ["error"],
     "import/order": [
       "error",
       {

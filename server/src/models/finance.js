@@ -10,8 +10,20 @@ module.exports = ({ pool }) => {
         date,
       ])
     },
-    select({ startDate, code }) {
-      return pool.query(`SELECT * FROM "finance" WHERE date > $1 AND code = $2 ORDER BY date ASC;`, [startDate, code])
+    select({ startDate, endDate = new Date(), code }) {
+      return pool.query(`SELECT * FROM "finance" WHERE date > $1 AND date < $2 AND code = $3 ORDER BY date ASC;`, [
+        startDate,
+        endDate,
+        code,
+      ])
+    },
+    selectOne({ startDate, endDate = new Date(), code, orderAsc = true }) {
+      return pool.query(
+        `SELECT * FROM "finance" WHERE date > $1 AND date < $2 AND code = $3 ORDER BY date ${
+          orderAsc ? `ASC` : `DESC`
+        } LIMIT 1;`,
+        [startDate, endDate, code],
+      )
     },
   }
 }
