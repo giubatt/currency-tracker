@@ -123,8 +123,8 @@ function Chart() {
         datasets: [
           {
             label: `USD`,
-            backgroundColor: `#08626B40`,
-            borderColor: `#08626B`,
+            backgroundColor: `#6CA30A40`,
+            borderColor: `#6CA30A`,
             data: data.USD
               ? data.USD.map(({ date, bid }) => {
                   return {
@@ -148,8 +148,8 @@ function Chart() {
         datasets: [
           {
             label: `EUR`,
-            backgroundColor: `#6CA30A40`,
-            borderColor: `#6CA30A`,
+            backgroundColor: `#08626B40`,
+            borderColor: `#08626B`,
             data: data.EUR
               ? data.EUR.map(({ date, bid }) => {
                   return {
@@ -210,7 +210,7 @@ function Chart() {
     <>
       <Row gutter={32}>
         <Col span={8}>
-          <Card>
+          <Card title="Bitcoin (BTC)">
             <div style={{ height: 300 }}>
               <canvas
                 style={{ height: `100%`, width: `100%` }}
@@ -220,7 +220,7 @@ function Chart() {
           </Card>
         </Col>
         <Col span={8}>
-          <Card>
+          <Card title="Dólar (USD)">
             <div style={{ height: 300 }}>
               <canvas
                 style={{ height: `100%`, width: `100%` }}
@@ -230,7 +230,7 @@ function Chart() {
           </Card>
         </Col>
         <Col span={8}>
-          <Card>
+          <Card title="Euro (EUR)">
             <div style={{ height: 300 }}>
               <canvas
                 style={{ height: `100%`, width: `100%` }}
