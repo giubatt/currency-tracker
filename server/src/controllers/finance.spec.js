@@ -40,3 +40,31 @@ describe(`getVariation`, () => {
     })
   })
 })
+
+describe(`insert`, () => {
+  test(`to call db.finance.insert with correct parameters`, async () => {
+    // Arrange
+    const params = {
+      code: `USD`,
+      high: `3.8569`,
+      low: `3.8564`,
+      bid: `3.8563`,
+      ask: `3.8565`,
+      date: new Date(1560292202000),
+    }
+
+    // Act
+    financeController.insert(params)
+
+    // Assert
+    expect(db.finance.insert).toHaveBeenCalledTimes(1)
+    expect(db.finance.insert).toHaveBeenCalledWith({
+      code: `USD`,
+      high: 3.8569,
+      low: 3.8564,
+      bid: 3.8563,
+      ask: 3.8565,
+      date: new Date(1560292202000),
+    })
+  })
+})

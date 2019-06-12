@@ -6,7 +6,7 @@ const url = `https://economia.awesomeapi.com.br/all/USD-BRL,BTC-BRL,EUR-BRL`
 
 const rule = `2 * * * *`
 
-schedule.scheduleJob({ rule }, async () => {
+const job = async () => {
   const res = await axios.get(url)
 
   Object.values(res.data).forEach(({ code, high, low, bid, ask, create_date }) => {
@@ -23,4 +23,8 @@ schedule.scheduleJob({ rule }, async () => {
       date: new Date(create_date),
     })
   })
-})
+}
+
+schedule.scheduleJob({ rule }, job)
+
+module.exports = job
