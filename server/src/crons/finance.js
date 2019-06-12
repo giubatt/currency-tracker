@@ -4,7 +4,7 @@ const financeController = require(`../controllers/finance`)
 
 const url = `https://economia.awesomeapi.com.br/all/USD-BRL,BTC-BRL,EUR-BRL`
 
-const rule = `* * * * *`
+const rule = `2 * * * *`
 
 schedule.scheduleJob({ rule }, async () => {
   const res = await axios.get(url)
